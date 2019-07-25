@@ -19,4 +19,8 @@ export class TaskService {
   getTasks(listId: string) {
     return this.webReqService.get(`lists/${listId}/tasks`);
   }
+
+  createTask(title:String,listId:String){
+    return this.webReqService.post(`lists/${listId}/tasks`,{title})
+  }  
 }
