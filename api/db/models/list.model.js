@@ -7,6 +7,11 @@ const ListSchema = new mongoose.Schema({
         minlength: 1,
         trim: true
     }
+    ,
+    _userId:{
+        type:mongoose.Types.ObjectId,
+        required:true
+    }
 })
 
 const List = mongoose.model('List',ListSchema)

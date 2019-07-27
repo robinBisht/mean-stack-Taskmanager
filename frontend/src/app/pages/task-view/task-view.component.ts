@@ -12,16 +12,22 @@ import {List} from '../../models/list.model'
 export class TaskViewComponent implements OnInit {
   lists:List[];
   tasks:Task[];
-  selectedListId:String
+  selectedListId:string
   constructor(private taskService:TaskService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(
       (params:Params)=>{
-        console.log(params)
+        
+
+        if(params.listId){
+          this.selectedListId = params.listId;
         this.taskService.getTasks(params.listId).subscribe((tasks:any[])=>{
           this.tasks = tasks
         })
+      }else{
+        this.tasks = undefined
+      }
       }
       
     )

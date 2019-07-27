@@ -20,19 +20,28 @@
 
 
         <div class="task-list-container has-background-light">
-            <h1 class="title has-text-primary">
-                Lists
-            </h1>
-
-            <!-- Task -->
-            <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{'completed':task.completed}">
-              <p>{{task.title}}</p>
+            <div *ngIf="tasks">
+                <h1 class="title has-text-primary">
+                    Tasks
+                </h1>
+    
+                <!-- Task -->
+                <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{'completed':task.completed}">
+                  <p>{{task.title}}</p>
+                </div>
+                <h1 class="empty-state-text" *ngIf="tasks.length===0">
+                    There are no tasks here. Click Add button to create new Task
+                </h1>
+                <button class="circle-add-button button is-primary" routerLink="./new-task">
+                    <img src="../../../assets/plus-icon.svg" class="has-text-white">
+                </button>
             </div>
-            
-            <button class="circle-add-button button is-primary" routerLink="./new-task">
-                <img src="../../../assets/plus-icon.svg" class="has-text-white">
-            </button>
 
+            <div *ngIf="!tasks">
+                <h1 class="empty-state-text">
+                    Select a list from sidebar
+                </h1>
+            </div>
         </div>
     </div>
 </div>
